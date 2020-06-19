@@ -49,6 +49,9 @@ export default async (req, res) => {
       attachments.push(publicFile)
     })
   ])
+
+  await react('remove', channel, ts, 'beachball')
+
   let userRecord = await getUserRecord(user)
   console.log(attachments)
   console.log(userRecord)
