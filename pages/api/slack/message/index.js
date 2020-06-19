@@ -32,10 +32,10 @@ export default async (req, res) => {
     method = 'noFile'
   } else if (event.subtype === 'message_changed' && event.channel == process.env.CHANNEL) {
     method = 'updated'
-  } else if (event.type === 'message' && !event.thread_ts && event.channel === 'C015M6U6JKU') {
-    method = 'css'
   } else if (event.subtype === 'file_share' && !event.thread_ts && event.channel == 'C015M6U6JKU') {
     method = 'cssFile'
+  } else if (event.type === 'message' && !event.thread_ts && event.channel === 'C015M6U6JKU') {
+    method = 'css'
   } else if (event?.message?.text === 'forget scrapbook' && event.channel == process.env.CHANNEL) {
     method = 'forgotten'
   } else {
