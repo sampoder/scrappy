@@ -58,8 +58,8 @@ export default async (req, res) => {
 
   // I am assuming that this method will only ever be called when attachments has at least one file.
   const url = attachments[0].permalink_public
+  console.log(`Setting CSS event body text to: ${url}`)
   req.body.event.text = url
-  req.body.event.raw = url
 
   return await css(req, res)
 }

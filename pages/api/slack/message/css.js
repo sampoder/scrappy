@@ -5,7 +5,8 @@ export default async (req, res) => {
   const { user, text, ts, channel } = req.body.event
 
   const userRecord = await getUserRecord(user)
-
+  
+  console.log(`Extracting URL from message text: ${text}`)
   let url = getUrlFromString(text)
   console.log(url)
 
