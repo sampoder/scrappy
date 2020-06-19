@@ -9,6 +9,7 @@ Max and Matthew plz halp
 import {
   getPublicFileUrl,
   getUserRecord,
+  makeSlackFilePublic,
   reply,
   react,
   updatesTable,
@@ -36,16 +37,16 @@ export default async (req, res) => {
     react('add', channel, ts, 'beachball'),
     ...files.map(async (file, i) => {
       console.log(`FILE ${i}:`, file) 
-      const publicUrl = await getPublicFileUrl(file.url_private)
-      if (!publicUrl) {
+      const publicFile = await makeSlackFilePublic(file.id)
+      if (!publicFile) {
         await Promise.all([
           react('remove', channel, ts, 'beachball'),
           reply(channel, ts, t('messages.errors.filetype')),
           react('add', channel, ts, 'x')
         ])
       }
-      console.log('public url', publicUrl)
-      attachments.push({ url: publicUrl.url })
+      console.log('PUBLIC FILE: ', publicFile)
+      attachments.push(publicFile)
     })
   ])
   let userRecord = await getUserRecord(user)
@@ -53,7 +54,7 @@ export default async (req, res) => {
   console.log(userRecord)
 
   // I am assuming that this method will only ever be called when attachments has at least one file.
-  const url = attachments[0].url
+  const url = attachments[0].permalink_public
   req.body.event.text = url
   req.body.event.raw = url
 
