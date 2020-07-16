@@ -98,6 +98,7 @@ messages:
         I couldn't find that user :thunj: Make sure you're tagging the user, and make sure they're a Scrapbook user.
     'alreadyadded': <@${this.webringUser}> has already been added to your webring.
     'alreadyremoved': <@${this.webringUser}> isn't in your webring.
+    'yourself': Hey! Add other people to your webring, not yourself :watchingyou:
   profileUpdate: Your profile details have been updated! ${this.scrapbookLink}
   assetReady: <@${this.user}> Your video has been processed and is live on your scrapbook!
   errors:
